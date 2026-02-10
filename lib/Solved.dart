@@ -5,17 +5,21 @@ import 'main.dart';
 import 'Drafts.dart';
 import 'AreaReports.dart';
 
-class Solved extends StatelessWidget {
+
+class Solved extends StatefulWidget {
   const Solved({super.key});
 
   @override
+  State<Solved> createState() => _SolvedState();
+}
+
+class _SolvedState extends State<Solved> {
+  //  FILTER SOLVED REPORTS ONLY BASED ON THE STATUS
+  final solvedReports =
+  reports.where((r) => r["status"] == "solved").toList();
+
+  @override
   Widget build(BuildContext context) {
-    const activeColor = Color(0xFF2269D4);
-
-    //  FILTER SOLVED REPORTS ONLY BASED ON THE STATUS
-    final solvedReports =
-    reports.where((r) => r["status"] == "solved").toList();
-
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -27,8 +31,10 @@ class Solved extends StatelessWidget {
         title: Align(
           alignment: Alignment.centerRight,
           child: Image.asset(
-            "assets/images/logo.png",
-            width: 103,
+            "assets/images/logowithouttext.png",
+            width: 103.1,
+            height: 110,
+            fit: BoxFit.contain,
           ),
         ),
       ),
@@ -136,50 +142,70 @@ class Solved extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
 
 
             Row(
               children: [
 
                 SizedBox(
-                  width: 90,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFE6EEFF),
-                      padding: EdgeInsets.symmetric(horizontal: 6),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
+                  width: 110,
+                  height: 50,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color:  Color(0xFFE6EEFF),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Text(
-                          "تصفية",
-                          style: TextStyle(
-                            color: Color(0xFF1A4498),
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Icons.filter_list,
-                          size: 15,
-                          color: Color(0xFF1A4498),
-                        ),
-                      ],
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: k,
+                        isExpanded: true,
+                        icon:  SizedBox(),
+                        dropdownColor: Colors.white,
+                        selectedItemBuilder: (context) {
+                          return op.map((_) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                Text(
+                                  "تصفية",
+                                  style: TextStyle(
+                                    color: Color(0xFF1A4498),
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                SizedBox(width: 4),
+                                Icon(
+                                  Icons.filter_list,
+                                  size: 17,
+                                  color: Color(0xFF1A4498),
+                                ),
+                              ],
+                            );
+                          }).toList();
+                        },
+                        items: op.map<DropdownMenuItem<String>>((String h) {
+                          return DropdownMenuItem<String>(
+                            value: h,
+                            child: Text(h , style: TextStyle(color: Color(0xFF1A4498)),),
+                          );
+                        }).toList(),
+                        onChanged: (j) {
+                          setState(() {
+                            k = j!;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
+
 
                 SizedBox(width: 10),
 
                 Expanded(
                   child: SizedBox(
-                    height: 40,
+                    height: 50,
                     child: TextFormField(
                       textAlign: TextAlign.right,
                       textDirection: TextDirection.rtl,
@@ -189,7 +215,7 @@ class Solved extends StatelessWidget {
                           color: Color(0xFF1A4498),
                           fontSize: 15,
                         ),
-                        suffixIcon: const Icon(
+                        suffixIcon:  Icon(
                           Icons.search_sharp,
                           color: Color(0xFF1A4498),
                         ),
@@ -228,6 +254,7 @@ class Solved extends StatelessWidget {
 
                   return SizedBox(
                     height: 181,
+                    width: 550,
                     child: Container(
                       margin:  EdgeInsets.all(12),
                       padding:  EdgeInsets.all(12),
@@ -318,6 +345,8 @@ class Solved extends StatelessWidget {
     );
   }
 }
+
+
 
 class CustomBottomNavBar extends StatelessWidget {
   @override

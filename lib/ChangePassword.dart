@@ -53,9 +53,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
-      body:Directionality(
-        textDirection: TextDirection.rtl,
-        child:Stack(
+      body: Stack(
         fit: StackFit.expand,
         children: [
           Image.asset(
@@ -124,9 +122,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   children: [
                                     SizedBox(height: 20),
                                     Align(
-                                      alignment: Alignment.centerRight,
+                                      alignment: Alignment.centerLeft,
                                       child: Text(
-                                        "تغيير كلمة المرور",
+                                        "Change Password",
                                         style: TextStyle(
                                           color: c1,
                                           fontSize: 20,
@@ -143,7 +141,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           t1(
                                             nm,
                                             v1,
-                                            "الرقم الوطني",
+                                            "National Number",
                                             Icons.person_2_outlined,
                                             false,
                                             false,
@@ -152,7 +150,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           t1(
                                             password,
                                             v2,
-                                            "كلمة المرور الجديدة",
+                                            "New Password",
                                             Icons.password,
                                             true,
                                             true,
@@ -161,7 +159,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           t1(
                                             confirmpassword,
                                             v3,
-                                            "تأكيد كلمة المرور",
+                                            "Confirm New Password",
                                             Icons.password,
                                             true,
                                             true,
@@ -198,7 +196,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                                 color: Colors.white,
                                               )
                                                   : Text(
-                                                "تغيير",
+                                                "Change",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
@@ -223,7 +221,6 @@ class _ChangePasswordState extends State<ChangePassword> {
             ),
           ),
         ],
-      ),
       ),
     );
   }

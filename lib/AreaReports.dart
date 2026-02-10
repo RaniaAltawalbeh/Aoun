@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'Solved.dart';
 import 'Drafts.dart';
 
-class Areareports extends StatelessWidget {
+class Areareports extends StatefulWidget {
   const Areareports({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const activeColor = Color(0xFF2269D4);
-    return Scaffold(
+  State<Areareports> createState() => _AreareportsState();
+}
 
+class _AreareportsState extends State<Areareports> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: Colors.white,
 
 
@@ -22,9 +25,9 @@ class Areareports extends StatelessWidget {
         title: Align(
           alignment: Alignment.centerRight,
           child: Image.asset(
-            "assets/images/logo.png",
+            "assets/images/logowithouttext.png",
             width: 103.1,
-            height: 90,
+            height: 110,
             fit: BoxFit.contain,
           ),
         ),
@@ -138,34 +141,53 @@ class Areareports extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 90,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:  Color(0xFFE6EEFF),
-                      padding: EdgeInsets.symmetric(horizontal: 6),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
+                  width: 110,
+                  height: 50,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color:  Color(0xFFE6EEFF),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Text(
-                          "تصفية",
-                          style: TextStyle(
-                            color: Color(0xFF1A4498),
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Icons.filter_list,
-                          size: 15,
-                          color: Color(0xFF1A4498),
-                        ),
-                      ],
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: k,
+                        isExpanded: true,
+                        icon:  SizedBox(),
+                        dropdownColor: Colors.white,
+                        selectedItemBuilder: (context) {
+                          return op.map((_) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                Text(
+                                  "تصفية",
+                                  style: TextStyle(
+                                    color: Color(0xFF1A4498),
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                SizedBox(width: 4),
+                                Icon(
+                                  Icons.filter_list,
+                                  size: 17,
+                                  color: Color(0xFF1A4498),
+                                ),
+                              ],
+                            );
+                          }).toList();
+                        },
+                        items: op.map<DropdownMenuItem<String>>((String h) {
+                          return DropdownMenuItem<String>(
+                            value: h,
+                            child: Text(h , style: TextStyle(color: Color(0xFF1A4498)),),
+                          );
+                        }).toList(),
+                        onChanged: (j) {
+                          setState(() {
+                            k = j!;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -175,7 +197,7 @@ class Areareports extends StatelessWidget {
                 // SEARCH FIELD
                 Expanded(
                   child: SizedBox(
-                    height: 40,
+                    height: 50,
                     child: TextFormField(
                       // the side of the text to the right
                       textAlign: TextAlign.right,
@@ -317,10 +339,10 @@ class Areareports extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: CustomBottomNavBar(),
       ),
-
     );
   }
 }
+
 
 class CustomBottomNavBar extends StatelessWidget {
   @override

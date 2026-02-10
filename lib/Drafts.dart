@@ -26,8 +26,10 @@ class Drafts extends StatelessWidget {
         title: Align(
           alignment: Alignment.centerRight,
           child: Image.asset(
-            "assets/images/logo.png",
-            width: 103,
+            "assets/images/logowithouttext.png",
+            width: 103.1,
+            height: 110,
+            fit: BoxFit.contain,
           ),
         ),
       ),
@@ -146,31 +148,32 @@ class Drafts extends StatelessWidget {
 
 
                 SizedBox(
-                  width: 90,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:  Color(0xFFE6EEFF),
-                      padding: EdgeInsets.symmetric(horizontal: 6),
+                  width: 110,
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () {
+                      // action here
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0xFFE6EEFF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
+                      children: const [
                         Text(
                           "تصفية",
                           style: TextStyle(
                             color: Color(0xFF1A4498),
-                            fontSize: 15,
+                            fontSize: 17,
                           ),
                         ),
                         SizedBox(width: 4),
                         Icon(
                           Icons.filter_list,
-                          size: 15,
+                          size: 17,
                           color: Color(0xFF1A4498),
                         ),
                       ],
