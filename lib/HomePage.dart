@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
   Widget buildReportButton(BuildContext context, IconData icon, String label) {
     return GestureDetector(
       onTap: () {
-        Widget page = HomePage(); // افتراضي
+        Widget page = HomePage();
         switch (label) {
           case 'صوت':
             page = VoiceReportPage();
@@ -246,7 +246,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// البار السفلي
 class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
