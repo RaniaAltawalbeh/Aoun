@@ -1,4 +1,5 @@
 import 'package:aoun1/ChangePassword.dart';
+import 'package:aoun1/VoiceReportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:aoun1/firebase_options.dart';
@@ -28,7 +29,7 @@ class AounApp extends StatelessWidget {
         fontFamily: 'Cairo',
       ),
 
-      home:HomePage(),
+      home:VoiceReportPage(),
     );
   }
 }

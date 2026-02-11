@@ -245,7 +245,7 @@ class _SolvedState extends State<Solved> {
 
             SizedBox(height: 50),
 
-            /* -------- REPORT LIST -------- */
+
             Expanded(
               child: ListView.builder(
                 itemCount: solvedReports.length,
@@ -287,8 +287,11 @@ class _SolvedState extends State<Solved> {
                               children: [
 
                                 Text(
+                                  textDirection: TextDirection.rtl,
                                   report["description"],
                                   textAlign: TextAlign.right,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style:  TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,

@@ -34,7 +34,7 @@ class _AreareportsState extends State<Areareports> {
       ),
 
 
-      //
+
       body: Padding(
         padding:  EdgeInsets.all(12),
         child: Column(
@@ -54,7 +54,7 @@ class _AreareportsState extends State<Areareports> {
                         MaterialPageRoute(builder: (context) =>  ProcessingPage()),
                       );
                     },
-                    // change the style for it colors and border
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: activeColor,
@@ -89,7 +89,7 @@ class _AreareportsState extends State<Areareports> {
 
                   SizedBox(width: 8),
 
-                  //drafts page button
+
 
 
                   ElevatedButton(
@@ -194,7 +194,7 @@ class _AreareportsState extends State<Areareports> {
 
                 SizedBox(width: 10),
 
-                // SEARCH FIELD
+
                 Expanded(
                   child: SizedBox(
                     height: 50,
@@ -241,7 +241,7 @@ class _AreareportsState extends State<Areareports> {
 
             SizedBox(height: 50),
 
-            // list view builder here return all the complaints
+
             Expanded(
               child: ListView.builder(
                 itemCount: reports.length,
@@ -278,14 +278,17 @@ class _AreareportsState extends State<Areareports> {
 
                           SizedBox(width: 12),
 
-                          // TEXT + BUTTON
+
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
+                                  textDirection: TextDirection.rtl,
                                   report["description"],
                                   textAlign: TextAlign.right,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style:  TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,

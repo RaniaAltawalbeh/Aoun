@@ -96,8 +96,8 @@ class _ProcessingPageState extends State<ProcessingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              /* -------- CATEGORY BUTTONS -------- */
-              //top buttons scroll view for the buttons like a list
+
+
               SizedBox(
                 height: 40, // important for horizontal ListView
                 child: ListView(
@@ -207,7 +207,7 @@ class _ProcessingPageState extends State<ProcessingPage> {
               Row(
                 children: [
 
-                  // FILTER BUTTON
+
                   SizedBox(
                     width: 110,
                     height: 50,
@@ -263,7 +263,7 @@ class _ProcessingPageState extends State<ProcessingPage> {
 
                   SizedBox(width: 10),
 
-                  // SEARCH FIELD
+
                   Expanded(
                     child: SizedBox(
                       height: 50,
@@ -315,7 +315,7 @@ class _ProcessingPageState extends State<ProcessingPage> {
 
 
 
-              // processing page container using list view builder
+
               SizedBox(height: 50),
               Expanded(
                 child: ListView.builder(
@@ -357,8 +357,11 @@ class _ProcessingPageState extends State<ProcessingPage> {
                                 children: [
 
                                   Text(
+                                    textDirection: TextDirection.rtl,
                                     report["description"],
                                     textAlign: TextAlign.right,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                     style:  TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,

@@ -5,21 +5,25 @@ import 'Solved.dart';
 import 'main.dart';
 import 'AreaReports.dart';
 
-class Drafts extends StatelessWidget {
+class Drafts extends StatefulWidget {
   const Drafts({super.key});
 
+  @override
+  State<Drafts> createState() => _DraftsState();
+}
+class _DraftsState extends State<Drafts> {
   @override
   Widget build(BuildContext context) {
     const activeColor = Color(0xFF2269D4);
 
-    // FILTER SOLVED REPORTS ONLY
+    // FILTER DRAFT REPORTS ONLY
     final solvedReports =
     reports.where((r) => r["status"] == "draft").toList();
 
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // 🔹 APP BAR
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
@@ -150,33 +154,51 @@ class Drafts extends StatelessWidget {
                 SizedBox(
                   width: 110,
                   height: 50,
-                  child: TextButton(
-                    onPressed: () {
-                      // action here
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFFE6EEFF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color:  Color(0xFFE6EEFF),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          "تصفية",
-                          style: TextStyle(
-                            color: Color(0xFF1A4498),
-                            fontSize: 17,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Icons.filter_list,
-                          size: 17,
-                          color: Color(0xFF1A4498),
-                        ),
-                      ],
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: k,
+                        isExpanded: true,
+                        icon:  SizedBox(),
+                        dropdownColor: Colors.white,
+                        selectedItemBuilder: (context) {
+                          return op.map((_) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                Text(
+                                  "تصفية",
+                                  style: TextStyle(
+                                    color: Color(0xFF1A4498),
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                SizedBox(width: 4),
+                                Icon(
+                                  Icons.filter_list,
+                                  size: 17,
+                                  color: Color(0xFF1A4498),
+                                ),
+                              ],
+                            );
+                          }).toList();
+                        },
+                        items: op.map<DropdownMenuItem<String>>((String h) {
+                          return DropdownMenuItem<String>(
+                            value: h,
+                            child: Text(h , style: TextStyle(color: Color(0xFF1A4498)),),
+                          );
+                        }).toList(),
+                        onChanged: (j) {
+                          setState(() {
+                            k = j!;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -225,7 +247,7 @@ class Drafts extends StatelessWidget {
 
             SizedBox(height: 50),
 
-            /* --------  LIST BUILDER -------- */
+
             Expanded(
               child: ListView.builder(
                 itemCount: solvedReports.length,
@@ -266,8 +288,11 @@ class Drafts extends StatelessWidget {
                               children: [
 
                                 Text(
+                                  textDirection: TextDirection.rtl,
                                   report["description"],
                                   textAlign: TextAlign.right,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style:  TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -285,8 +310,8 @@ class Drafts extends StatelessWidget {
                                     },
 
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white, // button fill
-                                      foregroundColor: Color(0xFF5D8FD4), // text color
+                                      backgroundColor: Colors.white,
+                                      foregroundColor: Color(0xFF5D8FD4),
                                       elevation: 0,
                                       side: BorderSide(
                                         color: Color(0xFF5D8FD4),
